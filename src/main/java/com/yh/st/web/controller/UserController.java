@@ -16,7 +16,7 @@ import com.yh.st.base.service.UserinfoService;
  * @desc
  */
 @Controller
-@RequestMapping(value = "user", method = { RequestMethod.POST,
+@RequestMapping(method = { RequestMethod.POST,
 		RequestMethod.GET })
 public class UserController {
 
@@ -29,5 +29,11 @@ public class UserController {
 	public String testUU() {
 		userinfoService.queryUserinfo(1, 1).getList().get(0).getId();
 		return "dfdsfdfs";
+	}
+	
+	
+	@RequestMapping("a")
+	public String a() {
+		return "layout/a";
 	}
 }
