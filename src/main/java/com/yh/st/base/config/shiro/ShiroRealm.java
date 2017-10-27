@@ -29,7 +29,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken authcToken) throws AuthenticationException {
 		try {
-			UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authcToken;
+//			UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authcToken;
 			System.out.println(111);
 			AuthenticationInfo info = new SimpleAuthenticationInfo(
 					new Userinfo(), MD5.md5Encode("1232"), "yh");

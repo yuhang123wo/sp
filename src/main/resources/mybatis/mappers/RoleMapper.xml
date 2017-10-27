@@ -4,7 +4,4 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.yh.st.base.mapper.RoleMapper">
 
- <select id="findAll" resultType="com.yh.st.base.domain.Role">
-  select * from role
- </select>
 </mapper>

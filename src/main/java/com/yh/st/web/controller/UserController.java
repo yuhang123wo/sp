@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yh.st.base.config.shiro.ShiroService;
 import com.yh.st.base.service.UserinfoService;
 
 /**
@@ -21,6 +22,8 @@ public class UserController {
 
 	@Resource
 	private UserinfoService userinfoService;
+	@Resource
+	private ShiroService shiroService;
 
 	@RequestMapping("testUU")
 	public String testUU() {
