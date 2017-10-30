@@ -139,6 +139,29 @@
 					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
 
-	</div>    
+	</div>   
+	<script type="text/javascript">
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url:'resources/loadMenu.do',
+        dataType:"json",
+        success: function(data) {
+            var html="";
+            for(var i=0;i<data.length;i++){
+                html+="<li><a href='"+data[i].resurl+"'><i class='icon icon-home'></i> <span>"+data[i].name+"</span></a> </li>"
+             }
+            $("#menu").append(html);
+            //改变当前菜单样式
+            $("#menu li a").each(function(){
+            $this = $(this);
+            if($this[0].href==String(window.location)){
+                $this.attr("href","javascript:;");
+                $this.parent().addClass("active");
+            }
+            });
+        }
+    });
+</script> 
 </body>
 </html>

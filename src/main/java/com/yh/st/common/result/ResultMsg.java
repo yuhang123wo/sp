@@ -1,25 +1,25 @@
 package com.yh.st.common.result;
 
-public class Response {
+public class ResultMsg {
 	/** 返回信息码 */
 	private String rspCode = "000000";
 	/** 返回信息内容 */
 	private String rspMsg = "操作成功";
 
-	public Response() {
+	public ResultMsg() {
 	}
 
-	public Response(ExceptionMsg msg) {
+	public ResultMsg(ExceptionMsg msg) {
 		this.rspCode = msg.getCode();
 		this.rspMsg = msg.getMsg();
 	}
 
-	public Response(String rspCode) {
+	public ResultMsg(String rspCode) {
 		this.rspCode = rspCode;
 		this.rspMsg = "";
 	}
 
-	public Response(String rspCode, String rspMsg) {
+	public ResultMsg(String rspCode, String rspMsg) {
 		this.rspCode = rspCode;
 		this.rspMsg = rspMsg;
 	}

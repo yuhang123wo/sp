@@ -1,26 +1,26 @@
 package com.yh.st.common.result;
 
-public class ResponseData extends Response{
+public class ResultData extends ResultMsg{
     private Object data;
 
-    public ResponseData(Object data) {
+    public ResultData(Object data) {
         this.data = data;
     }
     
-    public ResponseData(ExceptionMsg msg) {
+    public ResultData(ExceptionMsg msg) {
     	  super(msg);
     }
     
-    public ResponseData(String rspCode, String rspMsg) {
+    public ResultData(String rspCode, String rspMsg) {
         super(rspCode, rspMsg);
     }
 
-    public ResponseData(String rspCode, String rspMsg, Object data) {
+    public ResultData(String rspCode, String rspMsg, Object data) {
         super(rspCode, rspMsg);
         this.data = data;
     }
 
-    public ResponseData(ExceptionMsg msg, Object data) {
+    public ResultData(ExceptionMsg msg, Object data) {
         super(msg);
         this.data = data;
     }
@@ -42,8 +42,8 @@ public class ResponseData extends Response{
     
     
     public static void main(String[] args) {
-    	Response s = new Response(ExceptionMsg.SUCCESS);
-    	ResponseData ss = new ResponseData("ss");
+    	ResultMsg s = new ResultMsg(ExceptionMsg.SUCCESS);
+    	ResultData ss = new ResultData("ss");
     	System.out.println(s);
     	System.out.println(ss.getData());
 	}

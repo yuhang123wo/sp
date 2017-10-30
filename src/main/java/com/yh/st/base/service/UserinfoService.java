@@ -18,14 +18,18 @@ public interface UserinfoService {
 	PageInfo<Userinfo> queryUserinfo(int pageNo, int pageSize);
 
 	/**
+	 * 取所有角色
 	 * 
 	 * @return
 	 */
 	List<Role> findRoleAll();
 
 	/**
+	 * 取所有权限
 	 * 
 	 * @return
 	 */
 	List<Auth> findAuthAll();
+	
+	
 }
