@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yh.st.base.domain.Auth;
 import com.yh.st.base.service.UserinfoService;
-import com.yh.st.common.result.ResultData;
 
 /**
  * 
@@ -34,8 +33,8 @@ public class SystemController {
 	@RequestMapping("roleListData")
 	@ResponseBody
 	public Object roleListData(HttpServletRequest request) {
-		List<Auth> list = userinfoService.findAuthAll();
-//		return new ResultData(list);
-		return list;
+		return userinfoService.queryUserinfo(1, 1);
+		// return new ResultData(list);
+		// return list;
 	}
 }

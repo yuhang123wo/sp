@@ -1,5 +1,4 @@
 	function pagePlugin(pluginName,totalPages,page,totalNum,pageMethod){
-		page++;
 		var aim = $('#'+pluginName);
 		var moz = 0;
 		var minPage = page - 2;
