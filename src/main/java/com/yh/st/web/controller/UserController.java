@@ -37,8 +37,7 @@ public class UserController {
 	@RequestMapping("getUserMenu")
 	@ResponseBody
 	public ResultData getUserMenu(HttpServletRequest request) {
-//		userinfoService.l
-		
+		// userinfoService.l
 		return null;
 	}
 }

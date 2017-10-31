@@ -45,6 +45,6 @@ public class ResultData extends ResultMsg{
     	ResultMsg s = new ResultMsg(ExceptionMsg.SUCCESS);
     	ResultData ss = new ResultData("ss");
     	System.out.println(s);
-    	System.out.println(ss.getData());
+    	System.out.println(ss.getRspCode());
 	}
 }

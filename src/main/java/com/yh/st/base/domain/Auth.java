@@ -15,8 +15,8 @@ public class Auth extends Entity {
 	private Integer type;
 	private Integer pId;
 
-	public static final int type_menu = 1;// 菜单
-	public static final int type_button = 2;// 按钮
+	public static final int TYPE_MENU = 1;// 菜单
+	public static final int TYPE_BUTTON = 2;// 按钮
 
 	/**
 	 * @return the name

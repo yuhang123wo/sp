@@ -2,9 +2,9 @@ package com.yh.st.common.result;
 
 public class ResultMsg {
 	/** 返回信息码 */
-	private String rspCode = "000000";
+	protected String rspCode = "0";
 	/** 返回信息内容 */
-	private String rspMsg = "操作成功";
+	protected String rspMsg = "操作成功";
 
 	public ResultMsg() {
 	}

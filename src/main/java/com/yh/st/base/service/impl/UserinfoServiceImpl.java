@@ -16,6 +16,8 @@ import com.yh.st.base.mapper.AuthMapper;
 import com.yh.st.base.mapper.RoleMapper;
 import com.yh.st.base.mapper.UserinfoMapper;
 import com.yh.st.base.service.UserinfoService;
+import com.yh.st.base.vo.MenuVo;
+import com.yh.st.common.util.MenuTool;
 
 @Service("userinfoService")
 public class UserinfoServiceImpl implements UserinfoService {
@@ -26,13 +28,6 @@ public class UserinfoServiceImpl implements UserinfoService {
 	private RoleMapper roleMapper;
 	@Resource
 	private AuthMapper authMapper;
-
-	
-	
-	public UserinfoServiceImpl() {
-		super();
-		System.out.println("=======================xxxxx");
-	}
 
 	@Override
 	public PageInfo<Userinfo> queryUserinfo(int pageNo, int pageSize) {
@@ -51,5 +46,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public List<Auth> findAuthAll() {
 		return authMapper.select(null);
+	}
+
+	@Override
+	public List<MenuVo> findMenuByUserId(long userId) {
+		return MenuTool.getMenu(authMapper.findAuthByUserId(userId));
 	}
 }

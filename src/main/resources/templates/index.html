@@ -15,37 +15,7 @@
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" th:href="@{/css/ace-ie.min.css}" />
 		<![endif]-->
-	</head>
-
-	<body class="no-skin">
-		 <div th:replace="layout/header :: header"></div>
-		<!-- /section:basics/navbar.layout -->
-		<div class="main-container" id="main-container">
-           <div th:replace="layout/sidebar :: sidebar"></div>
-			<!-- /section:basics/sidebar -->
-			<div class="main-content">
-				<div layout:fragment="content" id="content" ></div>
-			</div><!-- /.main-content -->
-
-			<div class="footer">
-				<div class="footer-inner">
-					<!-- #section:basics/footer -->
-					<div class="footer-content">
-						<span class="bigger-120">
-							 统一开发平台-UI库 &copy; 2014  更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-						</span>
-					</div>
-
-					<!-- /section:basics/footer -->
-				</div>
-			</div>
-
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-			</a>
-		</div><!-- /.main-container -->
-
-    <div th:fragment="htmljs">
+		
         <!--[if lte IE 8]>
 		<script th:src="@{/js/html5shiv.min.js}"></script>
 		<script th:src="@{/js/respond.min.js}"></script>
@@ -65,6 +35,50 @@
 		<script th:src="@{/js/jquery-ui.custom.min.js}"></script>
 		<script th:src="@{/js/jquery.ui.touch-punch.min.js}"></script>
 		<script th:src="@{/js/ace.min.js}"></script>
-</div>
+	</head>
+
+	<body class="no-skin">
+		 <div th:replace="layout/header :: header"></div>
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+           <div th:replace="layout/sidebar :: sidebar"></div>
+			<!-- /section:basics/sidebar -->
+			<div class="main-content" id="content">
+				<div layout:fragment="content" ></div>
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<!-- #section:basics/footer -->
+					<div class="footer-content">
+						<span class="bigger-120">
+							 统一开发平台-UI库 &copy; 2014  更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+						</span>
+					</div>
+
+					<!-- /section:basics/footer -->
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		<script type="text/javascript">
+		$(function(){
+			initMenu();
+		});
+		//初始化菜单 
+		function initMenu(){
+			var seq = $("#content").find("div[class='page-content']").attr("seq");
+			$("#sidebar li").each(function(){
+			    	$(this).removeClass("active");
+			});
+		    $("#"+seq).addClass("active");
+		    $("#"+seq).parent().parent().addClass("open");
+		    $("#"+seq).parent().addClass("nav-show");
+		    $("#"+seq).parent().css('display','block'); 	
+		}
+		</script>
 	</body>
 </html>
