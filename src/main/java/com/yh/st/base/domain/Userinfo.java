@@ -106,4 +106,25 @@ public class Userinfo extends Entity {
 	public void setState(int state) {
 		this.state = state;
 	}
+
+	public static final int SEX_BOY = 1;
+	public static final int SEX_GIRL = 0;
+
+	public String getSexCN() {
+		return sex == SEX_BOY ? "男" : "女";
+	}
+
+	public static final int STATE_DEL = 1;
+	public static final int STATE_DISABLE = 2;
+	public static final int STATE_ACTIVE = 3;
+
+	public String getStateCN() {
+		if (state == STATE_DEL) {
+			return "删除";
+		} else if (state == STATE_DISABLE) {
+			return "禁用";
+		} else {
+			return "正常";
+		}
+	}
 }

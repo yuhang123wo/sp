@@ -25,8 +25,7 @@ import com.yh.st.common.result.ResultData;
  * @desc 用户相关操作(权限，信息等)
  */
 @Controller
-@RequestMapping(value = "user", method = { RequestMethod.POST,
-		RequestMethod.GET })
+@RequestMapping(value = "user", method = { RequestMethod.POST, RequestMethod.GET })
 public class UserController extends BaseController {
 
 	@Resource
@@ -61,8 +60,7 @@ public class UserController extends BaseController {
 	@RequestMapping("userListData")
 	@ResponseBody
 	public ResultData userListData(HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		PageInfo<Userinfo> page = userinfoService.queryUserinfo(map,
+		PageInfo<Userinfo> page = userinfoService.queryUserinfo(getParams(request),
 				getPageNum(request), pageSize);
 		return new ResultData(page);
 	}

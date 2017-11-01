@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -19,7 +20,7 @@ public class MyBatisConfig {
 	private DataSource dataSource;
 
 	@Bean
-//	@ConditionalOnMissingBean
+	@ConditionalOnMissingBean
 	// 当容器里没有指定的Bean的情况下创建该对象
 	public SqlSessionFactoryBean sqlSessionFactoryBean() throws IOException {
 		System.out.println(11);
