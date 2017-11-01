@@ -1,5 +1,8 @@
 package com.yh.st.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +34,7 @@ public class SystemController extends BaseController {
 	@RequestMapping("roleListData")
 	@ResponseBody
 	public Object roleListData(HttpServletRequest request) {
-		return userinfoService.queryUserinfo(getPageNum(request), 1);
+		Map<String, Object> map = new HashMap<String, Object>();
+		return userinfoService.queryUserinfo(map, getPageNum(request), pageSize);
 	}
 }

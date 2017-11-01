@@ -1,6 +1,7 @@
 package com.yh.st.base.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
 import com.yh.st.base.domain.Auth;
@@ -16,7 +17,7 @@ public interface UserinfoService {
 	 * @param pageSize
 	 * @return
 	 */
-	PageInfo<Userinfo> queryUserinfo(int pageNo, int pageSize);
+	PageInfo<Userinfo> queryUserinfo(Map<String, Object> params,int pageNo, int pageSize);
 
 	/**
 	 * 取所有角色

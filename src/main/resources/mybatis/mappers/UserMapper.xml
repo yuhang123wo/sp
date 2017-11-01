@@ -4,4 +4,27 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.yh.st.base.mapper.UserinfoMapper">
 
+	<sql id="whereUserinfo">
+		<where>
+			<if test="username!=null">
+				and username like #{username}
+			</if>
+			<if test="sex!=null">
+				and sex=#{sex}
+			</if>
+			<if test="endTime!=null">
+	        	<![CDATA[
+	        		and create_time<=#{endTime}
+	        	]]>
+	        </if>	
+	        <if test="startTime!=null">
+	        	<![CDATA[
+	        		and create_time>=#{startTime}
+	        	]]>
+	        </if>
+		</where>
+	</sql>
+	<select id="findUserinfoByParams" resultType="com.yh.st.base.domain.Userinfo">
+		select * from userinfo <include refid="whereUserinfo"/>
+	</select>
 </mapper>

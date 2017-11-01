@@ -33,8 +33,8 @@ public class MyBatisConfig {
 		sqlSessionFactoryBean.setConfigLocation(mybatisConfigXml);
 		// 设置别名包
 		sqlSessionFactoryBean.setTypeAliasesPackage("com.yh.st.base.domain");
-//		sqlSessionFactoryBean.setMapperLocations(resolver
-//				.getResources("classpath*:mybatis/mappers/*Mapper.xml"));
+		sqlSessionFactoryBean.setMapperLocations(resolver
+				.getResources("classpath*:mybatis/mappers/*Mapper.xml"));
 		return sqlSessionFactoryBean;
 	}
 

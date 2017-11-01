@@ -1,12 +1,12 @@
 package com.yh.st.base.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yh.st.base.domain.Auth;
@@ -30,11 +30,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 	private AuthMapper authMapper;
 
 	@Override
-	public PageInfo<Userinfo> queryUserinfo(int pageNo, int pageSize) {
+	public PageInfo<Userinfo> queryUserinfo(Map<String, Object> params,
+			int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
-		Example example = new Example(Userinfo.class);
-		example.createCriteria().andEqualTo("sex", 1);
-		List<Userinfo> list = userinfoMapper.selectByExample(example);
+		List<Userinfo> list = userinfoMapper.findUserinfoByParams(params);
 		return new PageInfo<Userinfo>(list);
 	}
 
