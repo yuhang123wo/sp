@@ -1,4 +1,29 @@
-	function pagePlugin(pluginName,totalPages,page,totalNum,pageMethod){
+var $curs = {};
+$(function(){
+	var hisParams = unescape(window.location.hash);
+		if (hisParams != '') {
+			query(JSON.parse(hisParams.replace('#', '')));
+		} else {
+			query({});
+		}
+});
+// jump page
+function jumpPage(page) {
+	$curs.pageNo = page;
+	query($curs);
+}
+// click query
+function startQuery(){
+	var pArray = $("#searchForm").serializeArray();
+	var params = {};
+	for(var i = 0;i < pArray.length;i++){
+		if($.trim(pArray[i].value) != ''){
+			params[pArray[i].name] = pArray[i].value;
+		}
+	}
+	query(params);
+}
+function pagePlugin(pluginName,totalPages,page,totalNum,pageMethod){
 		var aim = $('#'+pluginName);
 		var moz = 0;
 		var minPage = page - 2;

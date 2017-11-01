@@ -1,7 +1,5 @@
 package com.yh.st.web.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yh.st.base.domain.Auth;
+import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.service.UserinfoService;
 
 /**
@@ -20,7 +18,7 @@ import com.yh.st.base.service.UserinfoService;
  */
 @Controller
 @RequestMapping("sys")
-public class SystemController {
+public class SystemController extends BaseController {
 
 	@Resource
 	private UserinfoService userinfoService;
@@ -33,8 +31,6 @@ public class SystemController {
 	@RequestMapping("roleListData")
 	@ResponseBody
 	public Object roleListData(HttpServletRequest request) {
-		return userinfoService.queryUserinfo(1, 1);
-		// return new ResultData(list);
-		// return list;
+		return userinfoService.queryUserinfo(getPageNum(request), 1);
 	}
 }

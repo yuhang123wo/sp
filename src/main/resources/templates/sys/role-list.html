@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="index">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
 <meta charset="UTF-8" />
 </head>
@@ -12,26 +12,10 @@
 				<div class="col-xs-12">
 					<div class="row">
 						<div class="col-xs-12">
+					    <form id="searchForm" action="#">
 							<div class="table-header">差旅单管理</div>
 							<table width="100%" class="CSSearchTbl" cellpadding="0"
 								cellspacing="0">
-								<tr>
-									<td class="left">提交部门：</td>
-									<td class="right"><input type="text" size="16" /></td>
-									<td class="left">差旅单名称：</td>
-									<td class="right"><input type="text" size="16" /></td>
-									<td class="left">差旅单号：</td>
-									<td class="right"><input type="text" size="16" /></td>
-									<td class="left">差旅单状态：</td>
-									<td class="right"><select>
-											<option>未提交</option>
-											<option>审核中</option>
-											<option>审核通过</option>
-											<option>审核未通过</option>
-											<option>撤回</option>
-											<option>作废</option>
-									</select></td>
-								</tr>
 								<tr>
 									<td class="left">提交人姓名：</td>
 									<td class="right"><input type="text" size="16" /></td>
@@ -44,22 +28,21 @@
 										class="datePicker" /> 至 <input type="text" size="16"
 										class="datePicker" /></td>
 									<td class="right" colspan="2">
-										<button class="btn btn-primary pull-left col-sm-12 tbl-search"
-											data-dismiss="modal">
+										<span class="btn btn-primary pull-left col-sm-12 tbl-search" onclick="startQuery()">
 											开始搜索 <i class="ace-icon fa fa-search"></i>
-										</button>
+										</span>
 									</td>
 								</tr>
 							</table>
-
+                           </form>
 							<div class="table-responsive">
 								<table id="sample-table-2"
 									class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
-											<th class="center"><label class="position-relative">
+											<th class="center">序号<!-- <label class="position-relative">
 													<input type="checkbox" class="ace" /> <span class="lbl"></span>
-											</label></th>
+											</label> --></th>
 											<th>部门</th>
 											<th>差旅单号</th>
 											<th>名称</th>
@@ -93,26 +76,12 @@
 	<script id="orderTemplate" type="text/x-handlebars-template">
 	{{#each this}}
 		<tr id="{{id}}">
-		<td>{{id}}</td>
+		<td class="center">{{id}}</td>
         <td>{{name}}</td>
 		</tr>
 	{{/each}}
 	</script>	
-	<script type="text/javascript">
-	var $curs = {};
-	$(function(){
-	var hisParams = unescape(window.location.hash);
-		if (hisParams != '') {
-			query(JSON.parse(hisParams.replace('#', '')));
-		} else {
-			query({});
-		}
-	});
-
-	function clickQuery() {
-		query({});
-	}
-
+<script type="text/javascript">
 	function query(params) {
 		$curs = params;
 		window.location.hash = JSON.stringify($curs);
@@ -131,11 +100,7 @@
 			}
 		});
 	}
-	function jumpPage(page) {
-		$curs.pageNo = page;
-		query($curs);
-	}
 </script>
-	</div>
+</div>
 </body>
 </html>
