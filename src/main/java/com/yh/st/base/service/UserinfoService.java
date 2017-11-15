@@ -17,7 +17,7 @@ public interface UserinfoService {
 	 * @param pageSize
 	 * @return
 	 */
-	PageInfo<Userinfo> queryUserinfo(Map<String, Object> params,int pageNo, int pageSize);
+	PageInfo<Userinfo> queryUserinfo(Map<String, Object> params, int pageNo, int pageSize);
 
 	/**
 	 * 取所有角色
@@ -40,4 +40,23 @@ public interface UserinfoService {
 	 * @return
 	 */
 	List<MenuVo> findMenuByUserId(long userId);
+
+	/**
+	 * 取某个用户角色
+	 * 
+	 * @param params
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
+	List<Role> listRoleByUserId(long userId, int pageNo, int pageSize);
+	
+	
+	/**
+	 * 
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
+	PageInfo<Role> queryRole(Map<String,Object> map,int pageNo, int pageSize);
 }

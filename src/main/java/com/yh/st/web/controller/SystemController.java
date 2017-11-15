@@ -1,8 +1,5 @@
 package com.yh.st.web.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,10 +28,15 @@ public class SystemController extends BaseController {
 		return "sys/role-list";
 	}
 
+	/**
+	 * 角色信息列表
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("roleListData")
 	@ResponseBody
 	public Object roleListData(HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		return userinfoService.queryUserinfo(map, getPageNum(request), pageSize);
+		return userinfoService.queryRole(getParams(request), getPageNum(request), pageSize);
 	}
 }

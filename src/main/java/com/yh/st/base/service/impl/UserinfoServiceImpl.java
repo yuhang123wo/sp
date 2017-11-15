@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yh.st.base.domain.Auth;
@@ -18,6 +19,7 @@ import com.yh.st.base.mapper.UserinfoMapper;
 import com.yh.st.base.service.UserinfoService;
 import com.yh.st.base.vo.MenuVo;
 import com.yh.st.common.util.MenuTool;
+import com.yh.st.common.util.StringUtil;
 
 @Service("userinfoService")
 public class UserinfoServiceImpl implements UserinfoService {
@@ -30,8 +32,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	private AuthMapper authMapper;
 
 	@Override
-	public PageInfo<Userinfo> queryUserinfo(Map<String, Object> params,
-			int pageNo, int pageSize) {
+	public PageInfo<Userinfo> queryUserinfo(Map<String, Object> params, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		List<Userinfo> list = userinfoMapper.findUserinfoByParams(params);
 		return new PageInfo<Userinfo>(list);
@@ -50,5 +51,21 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public List<MenuVo> findMenuByUserId(long userId) {
 		return MenuTool.getMenu(authMapper.findAuthByUserId(userId));
+	}
+
+	@Override
+	public List<Role> listRoleByUserId(long userId, int pageNo, int pageSize) {
+		return roleMapper.listRoleByUserId(userId);
+	}
+
+	@Override
+	public PageInfo<Role> queryRole(Map<String,Object> params,int pageNo, int pageSize) {
+		PageHelper.startPage(pageNo, pageSize);
+		Example example = new Example(Example.class);
+		if(StringUtil.objIsNotNull(params.get("name"))){
+			example.createCriteria().andLike("name", params.get("name").toString());
+		}
+		List<Role> list = roleMapper.selectByExample(example);
+		return new PageInfo<Role>(list);
 	}
 }
