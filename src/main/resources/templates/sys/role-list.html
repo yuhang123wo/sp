@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
-<meta charset="UTF-8" />
+<script th:src="@{/js/page.js}"></script>
 </head>
 <body>
 	<!-- /section:basics/content.breadcrumbs -->
@@ -65,10 +65,10 @@
 		<td class="center">{{id}}</td>
         <td>{{name}}</td>
         <td><div class="hidden-sm hidden-xs btn-group">
-				 <button class="btn btn-xs btn-info" style="margin-right:15px;">
-				   <i class="ace-icon fa fa-pencil bigger-120" ></i>
+				 <button class="btn btn-xs btn-info" style="margin-right:15px;" onclick="editRole({{id}})">
+				   <i class="ace-icon fa fa-pencil bigger-120" ></i> 编辑
 				</button>    <button class="btn btn-xs btn-danger" >
-				<i class="ace-icon fa fa-trash-o bigger-120"></i>
+				<i class="ace-icon fa fa-trash-o bigger-120"></i>删除
 				</button>
 			 </div>
          </td>
@@ -93,6 +93,10 @@
 				pagePlugin('myPage',data.pages,data.pageNum,data.total,jumpPage);
 			}
 		});
+	}
+	
+	function editRole(roleId){
+		window.location.href = "/sys/editRoleAuth/"+roleId;
 	}
 </script>
 </div>

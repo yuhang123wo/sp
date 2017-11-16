@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head>
+	<link rel="stylesheet" th:href="@{/css/zTreeStyle/zTreeStyle.css}" type="text/css"/>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.ztree.core.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.ztree.excheck.js}"></script>
+</head>
+<body>
+	<!-- /section:basics/content.breadcrumbs -->
+	<div class="page-content" layout:fragment="content" seq="12">
+		<!-- /section:settings.box -->
+		<div class="page-content-area">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+									<div class="col-sm-12">
+										<div class="widget-box widget-color-blue">
+											<div class="widget-header">
+												<h4 class="widget-title lighter smaller">角色权限</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="zTreeDemoBackground left">
+		                                    <ul id="treeDemo" class="ztree"></ul>
+	                                     </div>
+											</div>
+										</div>
+									</div>
+                    </div>
+
+					<!-- PAGE CONTENT ENDS -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.page-content-area -->
+		<!-- /.page-content-area -->
+		<!-- /.page-content -->
+	<SCRIPT th:inline="javascript">
+		var setting = {
+			check: {
+				enable: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+		$(document).ready(function(){
+			alert([[${authList}]]);
+			$.fn.zTree.init($("#treeDemo"), setting, [[${authList}]]);
+		});
+	</SCRIPT>
+</div>
+</body>
+</html>

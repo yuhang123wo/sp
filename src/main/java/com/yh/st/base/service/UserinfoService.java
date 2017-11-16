@@ -59,4 +59,11 @@ public interface UserinfoService {
 	 * @return
 	 */
 	PageInfo<Role> queryRole(Map<String,Object> map,int pageNo, int pageSize);
+	
+	/**
+	 * 获取某角色的所有权限
+	 * @param roleId
+	 * @return
+	 */
+	List<Long> listAuthByRoleId(long roleId);
 }

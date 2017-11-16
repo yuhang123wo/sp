@@ -68,4 +68,10 @@ public class UserinfoServiceImpl implements UserinfoService {
 		List<Role> list = roleMapper.selectByExample(example);
 		return new PageInfo<Role>(list);
 	}
+	
+	
+	@Override
+	public List<Long> listAuthByRoleId(long roleId){
+		return authMapper.listAuthByRoleId(roleId);
+	}
 }
