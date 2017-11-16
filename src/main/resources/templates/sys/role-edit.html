@@ -22,11 +22,22 @@
 
 											<div class="widget-body">
 												<div class="zTreeDemoBackground left">
-		                                    <ul id="treeDemo" class="ztree"></ul>
-	                                     </div>
+		                                      <ul id="treeDemo" class="ztree"></ul>
+	                                         </div>
 											</div>
 										</div>
 									</div>
+									<div align="center">
+									<button class="btn btn-white btn-round">
+												<i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+												保存
+											</button>
+											<button class="btn btn-white btn-default btn-round">
+												<i class="ace-icon fa fa-times red2"></i>
+												取消
+											</button>
+											</div>
+									
                     </div>
 
 					<!-- PAGE CONTENT ENDS -->
@@ -50,7 +61,6 @@
 			}
 		};
 		$(document).ready(function(){
-			alert([[${authList}]]);
 			$.fn.zTree.init($("#treeDemo"), setting, [[${authList}]]);
 		});
 	</SCRIPT>
