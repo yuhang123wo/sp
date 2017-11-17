@@ -66,4 +66,10 @@ public interface UserinfoService {
 	 * @return
 	 */
 	List<Long> listAuthByRoleId(long roleId);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	Userinfo findUserByUserName(String userName);
 }

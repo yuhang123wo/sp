@@ -4,6 +4,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 
+import com.yh.st.base.Constant;
 import com.yh.st.common.util.MD5;
 /**
  * 
@@ -19,7 +20,7 @@ public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
 		Object accountCredentials = getCredentials(info);
 		try {
 			String password = String.valueOf(token.getPassword());
-			return equals(MD5.md5Encode(password), accountCredentials);
+			return equals(MD5.md5Encode(Constant.PWD_PRFIX+password), accountCredentials);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

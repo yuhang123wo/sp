@@ -27,6 +27,19 @@ public class Userinfo extends Entity {
 	@Column(name = "state")
 	private int state;
 
+	
+	
+	public Userinfo() {
+		super();
+	}
+
+	
+	public Userinfo(String username) {
+		super();
+		this.username = username;
+	}
+
+
 	public String getUsername() {
 		return this.username;
 	}

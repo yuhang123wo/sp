@@ -1,5 +1,7 @@
 package com.yh.st.base.config.shiro;
 
+import javax.annotation.Resource;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -10,30 +12,35 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 import com.yh.st.base.domain.Userinfo;
-import com.yh.st.common.util.MD5;
+import com.yh.st.base.exception.UserNotExistException;
+import com.yh.st.base.service.UserinfoService;
 
 public class ShiroRealm extends AuthorizingRealm {
-/*
+
 	@Resource
-	private UserinfoService userinfoService;*/
+	private UserinfoService userinfoService;
 
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(
-			PrincipalCollection principals) {
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		System.out.println(111);
 		return info;
 	}
 
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(
-			AuthenticationToken authcToken) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
+			throws AuthenticationException {
+		UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authcToken;
 		try {
-//			UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authcToken;
-			System.out.println(111);
-			AuthenticationInfo info = new SimpleAuthenticationInfo(
-					new Userinfo(), MD5.md5Encode("1232"), "yh");
+			Userinfo u = userinfoService.findUserByUserName(token.getUsername());
+			if (u == null) {
+				throw new UserNotExistException();
+			}
+			AuthenticationInfo info = new SimpleAuthenticationInfo(u, u.getPassword(),
+					u.getUsername());
 			return info;
+		} catch (UserNotExistException e) {
+			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

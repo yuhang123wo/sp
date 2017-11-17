@@ -68,7 +68,7 @@ public class ShiroConfiguration {
 						"perms[" + auth.getAuthUrl() + "]");
 			}
 		}
-		filterChainDefinitionMap.put("/**", "anon");// 表示需要认证才可以访问
+		filterChainDefinitionMap.put("/**", "authc");// 表示需要认证才可以访问
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return bean;
 	}

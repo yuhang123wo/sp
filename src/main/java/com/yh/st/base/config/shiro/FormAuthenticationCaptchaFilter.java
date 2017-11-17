@@ -22,7 +22,7 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
 
 	public static final String DEFAULT_CAPTCHA_PARAM = "captcha";
 
-	public static final String FAIL_URL = "loginFail";
+	public static final String FAIL_URL = "login";
 	public static final String LOGIN_PREFIX = "index";
 
 	private String captchaParam = DEFAULT_CAPTCHA_PARAM;

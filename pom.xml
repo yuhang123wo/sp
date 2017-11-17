@@ -115,6 +115,15 @@
 			<artifactId>shiro-cas</artifactId>
 			<version>1.2.4</version>
 		</dependency>
+		   <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+		<!-- 集成ehcache需要的依赖-->  
+        <dependency>  
+            <groupId>net.sf.ehcache</groupId>  
+            <artifactId>ehcache</artifactId>  
+        </dependency>  
 	</dependencies>
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
 	<repositories>

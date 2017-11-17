@@ -27,4 +27,8 @@
 	<select id="findUserinfoByParams" resultType="com.yh.st.base.domain.Userinfo">
 		select * from userinfo <include refid="whereUserinfo"/>
 	</select>
+	<select id="findUserinfoByName" resultType="com.yh.st.base.domain.Userinfo">
+		select * from userinfo where username=#{username}
+	</select>
+	
 </mapper>

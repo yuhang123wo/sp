@@ -50,7 +50,8 @@ public class UserinfoServiceImpl implements UserinfoService {
 
 	@Override
 	public List<MenuVo> findMenuByUserId(long userId) {
-		return MenuTool.getMenu(authMapper.findAuthByUserId(userId));
+		List<MenuVo> list = MenuTool.getMenu(authMapper.findAuthByUserId(userId));
+		return list;
 	}
 
 	@Override
@@ -59,19 +60,23 @@ public class UserinfoServiceImpl implements UserinfoService {
 	}
 
 	@Override
-	public PageInfo<Role> queryRole(Map<String,Object> params,int pageNo, int pageSize) {
+	public PageInfo<Role> queryRole(Map<String, Object> params, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		Example example = new Example(Example.class);
-		if(StringUtil.objIsNotNull(params.get("name"))){
+		if (StringUtil.objIsNotNull(params.get("name"))) {
 			example.createCriteria().andLike("name", params.get("name").toString());
 		}
 		List<Role> list = roleMapper.selectByExample(example);
 		return new PageInfo<Role>(list);
 	}
-	
-	
+
 	@Override
-	public List<Long> listAuthByRoleId(long roleId){
+	public List<Long> listAuthByRoleId(long roleId) {
 		return authMapper.listAuthByRoleId(roleId);
+	}
+
+	@Override
+	public Userinfo findUserByUserName(String userName) {
+		return userinfoMapper.findUserinfoByName(userName);
 	}
 }

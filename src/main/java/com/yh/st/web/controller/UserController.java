@@ -38,9 +38,8 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("getUserMenu")
 	@ResponseBody
-	public ResultData getUserMenu(HttpServletRequest request) {
-		// userinfoService.l
-		return null;
+	public Object getUserMenu(HttpServletRequest request) {
+		return userinfoService.findMenuByUserId(1L);
 	}
 
 	/**
