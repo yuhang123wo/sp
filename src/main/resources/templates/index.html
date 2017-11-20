@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
 <meta charset="UTF-8" />
 </head>
@@ -7,7 +7,7 @@
 	<!-- /section:basics/content.breadcrumbs -->
 	<div class="page-content" layout:fragment="content" seq="0">
 
-		 <p>Hello, how are you today?</p></div>
-		
+		 <p>Hello,<shiro:principal property="username"/>, how are you today?</p></div>
+		 
 </body>
 </html>

@@ -124,11 +124,11 @@
             <groupId>net.sf.ehcache</groupId>  
             <artifactId>ehcache</artifactId>  
         </dependency>  
-    <!--     <dependency>
+         <dependency>
     <groupId>com.github.theborakompanioni</groupId>
     <artifactId>thymeleaf-extras-shiro</artifactId>
     <version>1.2.1</version> 
-</dependency> -->
+</dependency>
 	</dependencies>
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
 	<repositories>

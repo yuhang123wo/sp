@@ -19,6 +19,8 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
 import com.yh.st.base.domain.Auth;
 import com.yh.st.base.service.UserinfoService;
 
@@ -61,24 +63,23 @@ public class ShiroConfiguration {
 		// 配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/login", "loginAuth");// 表示需要认证才可以访问
+		filterChainDefinitionMap.put("/loginout", "logout");
 		List<Auth> list = userinfoService.findAuthAll();
 		if (CollectionUtils.isNotEmpty(list)) {
 			for (Auth auth : list) {
-				filterChainDefinitionMap.put(auth.getAuthUrl(),
-						"perms[" + auth.getAuthUrl() + "]");
+				filterChainDefinitionMap.put(auth.getAuthUrl(), "perms[" + auth.getAuthUrl() + "]");
 			}
 		}
 		filterChainDefinitionMap.put("/**", "authc");// 表示需要认证才可以访问
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-		//未授权界面;
+		// 未授权界面;
 		bean.setUnauthorizedUrl("/unauth");
 		return bean;
 	}
 
 	// 配置核心安全事务管理器
 	@Bean(name = "securityManager")
-	public SecurityManager securityManager(
-			@Qualifier("shiroRealm") ShiroRealm authRealm) {
+	public SecurityManager securityManager(@Qualifier("shiroRealm") ShiroRealm authRealm) {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
 		manager.setRealm(authRealm);
 		return manager;
@@ -106,5 +107,10 @@ public class ShiroConfiguration {
 		AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
 		advisor.setSecurityManager(manager);
 		return advisor;
+	}
+
+	@Bean
+	public ShiroDialect shiroDialect() {
+		return new ShiroDialect();
 	}
 }

@@ -13,7 +13,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="" id="1" shiro:hasPermission="sys">
+					<li class="" id="1" shiro:hasPermission="/sys">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text">系统设置 </span>
@@ -26,14 +26,14 @@
 						<ul class="submenu">
 
 							<li class="" id="11" >
-								<a href="/user/userListView">
+								<a href="/user/userListView" shiro:hasPermission="/user/userListView">
 									<i class="menu-icon fa fa-caret-right"></i>
 									用户管理
 								</a>
 
 								<b class="arrow"></b>
 							</li>
-							<li class="" id="12" >
+							<li class="" id="12" shiro:hasPermission="/sys/roleListView">
 								<a href="/sys/roleListView">
 									<i class="menu-icon fa fa-caret-right"></i>
 									角色管理
