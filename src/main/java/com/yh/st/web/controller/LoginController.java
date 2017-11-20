@@ -35,4 +35,14 @@ public class LoginController {
 	public String home() {
 		return "index";
 	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	@RequestMapping("unauth")
+	public String unauthorized() {
+		return "unauthorized";
+	}
+
 }

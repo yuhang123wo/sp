@@ -72,4 +72,11 @@ public interface UserinfoService {
 	 * @return
 	 */
 	Userinfo findUserByUserName(String userName);
+	
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	List<Auth> findAuthByUserId(long userId);
 }

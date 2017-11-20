@@ -17,9 +17,11 @@ public class GlobalExceptionHandler {
     public static final String DEFAULT_ERROR_VIEW = "error";
 
     @ExceptionHandler(value = Exception.class)
-    public ModelAndView defaultErrorHandler(Exception e, HttpServletRequest request) throws Exception {
+    public ModelAndView defaultErrorHandler(Exception e, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(DEFAULT_ERROR_VIEW);
+        logger.error(e);
+        System.out.println(e);
         return mav;
     }
 }

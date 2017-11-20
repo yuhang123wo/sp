@@ -1,5 +1,7 @@
 package com.yh.st.base.config.shiro;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -11,6 +13,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.yh.st.base.domain.Auth;
 import com.yh.st.base.domain.Userinfo;
 import com.yh.st.base.exception.UserNotExistException;
 import com.yh.st.base.service.UserinfoService;
@@ -23,7 +26,12 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		System.out.println(12345678);
+		Userinfo u = (Userinfo) principals.getPrimaryPrincipal();
+		List<Auth> auth = userinfoService.findAuthByUserId(u.getId());
+		for (int i = 0; i < auth.size(); i++) {
+			System.out.println(auth.get(i).getAuthUrl());
+			info.addStringPermission(auth.get(i).getAuthUrl());
+		}
 		return info;
 	}
 

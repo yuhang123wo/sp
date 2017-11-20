@@ -70,6 +70,8 @@ public class ShiroConfiguration {
 		}
 		filterChainDefinitionMap.put("/**", "authc");// 表示需要认证才可以访问
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+		//未授权界面;
+		bean.setUnauthorizedUrl("/unauth");
 		return bean;
 	}
 

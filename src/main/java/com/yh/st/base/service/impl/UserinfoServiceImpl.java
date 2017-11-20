@@ -79,4 +79,9 @@ public class UserinfoServiceImpl implements UserinfoService {
 	public Userinfo findUserByUserName(String userName) {
 		return userinfoMapper.findUserinfoByName(userName);
 	}
+
+	@Override
+	public List<Auth> findAuthByUserId(long userId) {
+		return authMapper.findAuthByUserId(userId);
+	}
 }
