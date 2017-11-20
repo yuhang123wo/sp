@@ -67,7 +67,6 @@
 		</div><!-- /.main-container -->
 		<script type="text/javascript">
 		$(function(){
-			initMenu();
 			setMenuOption();
 		});
 		//设置菜单属性
@@ -81,43 +80,7 @@
 		    $("#"+seq).parent().addClass("nav-show");
 		    $("#"+seq).parent().css('display','block'); 	
 		}
-		//初始化菜单
-		 // <![CDATA[
-		function initMenu(){
-			$.ajax({
-				  type: 'POST',
-				  url: "/user/getUserMenu",
-				  dataType:'json',
-				  success: function(m){
-					  if(m!=null){
-							 var li="";
-				         for(var i=0;i<m.length;i++){
-				        	  li = "<li id="+m[i].auth.id+">";
-				        	      li+="<a href='#' class='dropdown-toggle'>";
-				        	      li+="<i class='menu-icon fa fa-desktop'></i>";
-				        	      li+="<span class='menu-text'>"+m[i].auth.name+"</span>";
-				        	      li+="<b class='arrow fa fa-angle-down'></b>"
-				        	      li+="</a><b class='arrow'></b>";
-				                  if(m[i].child!=null && m[i].child.length>0){
-				                	  li+="<ul class='submenu'>";
-				                	  for(var n=0;n<m[i].child.length;n++){
-				                	  li+="<li id="+m[i].child[n].id+">";
-				                	  li+="	<a href="+m[i].child[n].authUrl+">";
-				                	  li+="		<i class='menu-icon fa fa-caret-right'></i>";
-				                	  li+= m[i].child[n].name;
-				                	  li+="	</a>";
-				                	  li+="	<b class='arrow'></b>";
-				                	  li+="	</li>";
-				                	  }
-				                	  li+="</ul>";
-				                  }
-								
-				         }
-				         $("#menuItem").append(li);
-						 }
-				  }
-				});
-		}//]]>
+		
 		</script>
 	</body>
 </html>

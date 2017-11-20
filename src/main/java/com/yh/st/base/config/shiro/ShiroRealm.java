@@ -23,7 +23,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		System.out.println(111);
+		System.out.println(12345678);
 		return info;
 	}
 
