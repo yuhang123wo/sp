@@ -1,12 +1,14 @@
 package com.yh.st.base.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @SuppressWarnings("serial")
 public class Entity implements java.io.Serializable {
 	@Column(name = "id")
+	@Id
 	private Long id;
 
 	/**

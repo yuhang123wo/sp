@@ -28,7 +28,7 @@
 										</div>
 									</div>
 									<div align="center">
-									<button class="btn btn-white btn-round">
+									<button class="btn btn-white btn-round" th:onclick="'javascript:getSelected('+${roleId}+')'">
 												<i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
 												保存
 											</button>
@@ -63,6 +63,25 @@
 		$(document).ready(function(){
 			$.fn.zTree.init($("#treeDemo"), setting, [[${authList}]]);
 		});
+		//<![CDATA[
+	    function getSelected(roleId){
+	    	alert(roleId);
+		var treeObj=$.fn.zTree.getZTreeObj("treeDemo");
+        var nodes=treeObj.getCheckedNodes(true);
+        var v="";
+        for(var i=0;i<nodes.length;i++){
+            v+=nodes[i].id + ",";
+        }
+    	$.ajax({
+			type : "POST",
+			url : '/sys/roleEdit',
+			data : {authIds:v,roleId:roleId},
+			dataType : 'json',
+			success : function(data) {
+				alert(data.rspCode+":"+data.rspMsg);
+			}
+		});
+	}//]]>
 	</SCRIPT>
 </div>
 </body>

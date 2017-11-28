@@ -79,4 +79,12 @@ public interface UserinfoService {
 	 * @return
 	 */
 	List<Auth> findAuthByUserId(long userId);
+	
+	
+	/**
+	 * 添加或更新权限
+	 * @param roleId
+	 * @param auths
+	 */
+	void addOrUpdateAuthByRole(long roleId, String auths);
 }

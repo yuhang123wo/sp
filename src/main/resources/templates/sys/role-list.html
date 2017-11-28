@@ -18,7 +18,7 @@
 								cellspacing="0">
 								<tr>
 									    <td class="left">角色名：</td>
-										<td class="right"><input type="text" size="16" /></td>
+										<td class="right"><input type="text" size="16" name="name"/></td>
 										<td class="right" colspan="2"><span
 											class="btn btn-primary pull-left col-sm-12 tbl-search"
 											onclick="startQuery()"> 开始搜索 <i
@@ -96,7 +96,7 @@
 	}
 	
 	function editRole(roleId){
-		window.location.href = "/sys/editRoleAuth/"+roleId;
+		window.location.href = "/sys/editRoleAuthView/"+roleId;
 	}
 </script>
 </div>

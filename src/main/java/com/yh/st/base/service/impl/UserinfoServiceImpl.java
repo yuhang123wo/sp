@@ -1,5 +1,6 @@
 package com.yh.st.base.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yh.st.base.domain.Auth;
 import com.yh.st.base.domain.Role;
+import com.yh.st.base.domain.RoleAuth;
 import com.yh.st.base.domain.Userinfo;
+import com.yh.st.base.exception.ErrorException;
 import com.yh.st.base.mapper.AuthMapper;
 import com.yh.st.base.mapper.RoleMapper;
 import com.yh.st.base.mapper.UserinfoMapper;
@@ -62,7 +65,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public PageInfo<Role> queryRole(Map<String, Object> params, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
-		Example example = new Example(Example.class);
+		Example example = new Example(Role.class);
 		if (StringUtil.objIsNotNull(params.get("name"))) {
 			example.createCriteria().andLike("name", params.get("name").toString());
 		}
@@ -83,5 +86,25 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public List<Auth> findAuthByUserId(long userId) {
 		return authMapper.findAuthByUserId(userId);
+	}
+
+	@Override
+	public void addOrUpdateAuthByRole(long roleId, String auths) {
+		Role role = roleMapper.selectByPrimaryKey(roleId);
+		if (role == null) {
+			throw new ErrorException("角色不存在");
+		}
+		if (StringUtil.isNull(auths)) {
+			return;
+		}
+		
+		//先删除权限
+		authMapper.delRoleAuthByRoleId(roleId);
+		List<RoleAuth> list = new ArrayList<RoleAuth>();
+		String[] arrayAuth = auths.split("\\,");
+		for (int i = 0; i < arrayAuth.length; i++) {
+			list.add(new RoleAuth((int)roleId,Integer.parseInt(arrayAuth[i])));
+		}
+		authMapper.insetRoleAuth(list);
 	}
 }

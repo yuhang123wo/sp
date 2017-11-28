@@ -77,4 +77,15 @@ public class RoleAuth extends Entity {
 	public void setAuthId(Integer authId) {
 		this.authId = authId;
 	}
+
+	public RoleAuth(Integer roleId, Integer authId) {
+		super();
+		this.roleId = roleId;
+		this.authId = authId;
+	}
+
+	public RoleAuth() {
+		super();
+	}
+
 }

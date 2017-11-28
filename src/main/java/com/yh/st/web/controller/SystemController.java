@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.Auth;
 import com.yh.st.base.service.UserinfoService;
+import com.yh.st.common.result.ResultMsg;
 import com.yh.st.common.util.ZnodesUtil;
 
 /**
@@ -53,13 +55,27 @@ public class SystemController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("editRoleAuth/{roleId}")
-	public String editRoleAuth(@PathVariable("roleId") long roleId, Model model) {
+	@RequestMapping("editRoleAuthView/{roleId}")
+	public String editRoleAuthView(@PathVariable("roleId") long roleId, Model model) {
 		List<Auth> list = userinfoService.findAuthAll();
 		List<Long> listRole = userinfoService.listAuthByRoleId(roleId);
 		model.addAttribute("roleId", roleId);
-		model.addAttribute("authList", ZnodesUtil.createZnodes(list,listRole));
+		model.addAttribute("authList", ZnodesUtil.createZnodes(list, listRole));
 		return "sys/role-edit";
+	}
+
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("roleEdit")
+	public ResultMsg roleEdit(HttpServletRequest request) {
+		String authIds = ServletRequestUtils.getStringParameter(request, "authIds", "");
+		int roleId = ServletRequestUtils.getIntParameter(request, "roleId", 0);
+		userinfoService.addOrUpdateAuthByRole(roleId, authIds);
+		return new ResultMsg();
 	}
 
 }
