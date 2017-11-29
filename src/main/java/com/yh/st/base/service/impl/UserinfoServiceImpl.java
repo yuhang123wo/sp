@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
@@ -88,6 +89,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 		return authMapper.findAuthByUserId(userId);
 	}
 
+	@Transactional
 	@Override
 	public void addOrUpdateAuthByRole(long roleId, String auths) {
 		Role role = roleMapper.selectByPrimaryKey(roleId);
