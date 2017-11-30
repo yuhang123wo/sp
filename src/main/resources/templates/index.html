@@ -7,7 +7,11 @@
 	<!-- /section:basics/content.breadcrumbs -->
 	<div class="page-content" layout:fragment="content" seq="0">
 
-		 <p>Hello,<shiro:principal property="username"/>, how are you today?</p></div>
-		 
+		 <p>Hello,<shiro:principal property="username"/>, how are you today?</p>
+		<input id="text" type="text" /><button onclick="send()">Send</button>    <button onclick="closeWebSocket()">Close</button>  
+<div id="message">  
+</div>  
+
+</div>    
 </body>
 </html>

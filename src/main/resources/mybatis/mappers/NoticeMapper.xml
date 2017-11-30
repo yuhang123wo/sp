@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.yh.st.base.mapper.NoticeMapper">
+
+	<sql id="whereNotice">
+		<where>
+			<if test="createUserId!=null">
+				and create_user_id =#{createUserId}
+			</if>
+			<if test="type!=null">
+				and type=#{type}
+			</if>
+			<if test="endTime!=null">
+	        	<![CDATA[
+	        		and create_time<=#{endTime}
+	        	]]>
+	        </if>	
+	        <if test="startTime!=null">
+	        	<![CDATA[
+	        		and create_time>=#{startTime}
+	        	]]>
+	        </if>
+		</where>
+	</sql>
+	<select id="findNoticeByParams" resultType="com.yh.st.base.domain.Notice">
+		select * from notice <include refid="whereNotice"/>
+	</select>
+	
+</mapper>
