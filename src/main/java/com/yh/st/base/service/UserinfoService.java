@@ -78,7 +78,7 @@ public interface UserinfoService {
 	 * @param userId
 	 * @return
 	 */
-	List<Auth> findAuthByUserId(long userId);
+	List<Auth> findAllAuthByUserId(long userId);
 	
 	
 	/**

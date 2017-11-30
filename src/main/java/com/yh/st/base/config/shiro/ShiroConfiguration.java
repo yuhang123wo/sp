@@ -67,6 +67,7 @@ public class ShiroConfiguration {
 		List<Auth> list = userinfoService.findAuthAll();
 		if (CollectionUtils.isNotEmpty(list)) {
 			for (Auth auth : list) {
+				System.out.println(auth.getAuthUrl());
 				filterChainDefinitionMap.put(auth.getAuthUrl(), "perms[" + auth.getAuthUrl() + "]");
 			}
 		}

@@ -236,10 +236,11 @@
     //发送消息  
     function send(){  
     	var userId = '<shiro:principal property="id"/>';
-        var message = document.getElementById('text').value;  
         var params={};
         params.userId=userId;
-        params.message=message;
+        params.message=$("#notice-msg").val();
+        params.title=$("#notice-title").val();
+        alert(JSON.stringify(params));
         websocket.send(JSON.stringify(params));  
     }  
     $(function(){getMessageNum();})

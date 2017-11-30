@@ -58,4 +58,13 @@ public class WorkController extends BaseController {
 		return noticeService.countMessageNumByUserId(userId);
 	}
 
+	/**
+	 * 公告添加
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping("notice/add")
+	public String noticeAdd() {
+		return "work/notice-add";
+	}
 }

@@ -54,7 +54,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 
 	@Override
 	public List<MenuVo> findMenuByUserId(long userId) {
-		List<MenuVo> list = MenuTool.getMenu(authMapper.findAuthByUserId(userId));
+		List<MenuVo> list = MenuTool.getMenu(authMapper.findAuthMenuByUserId(userId));
 		return list;
 	}
 
@@ -85,8 +85,8 @@ public class UserinfoServiceImpl implements UserinfoService {
 	}
 
 	@Override
-	public List<Auth> findAuthByUserId(long userId) {
-		return authMapper.findAuthByUserId(userId);
+	public List<Auth> findAllAuthByUserId(long userId) {
+		return authMapper.findAllAuthByUserId(userId);
 	}
 
 	@Transactional
