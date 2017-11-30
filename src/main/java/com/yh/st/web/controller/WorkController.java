@@ -4,16 +4,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.pagehelper.PageInfo;
 import com.yh.st.base.controller.BaseController;
-import com.yh.st.base.domain.Notice;
-import com.yh.st.base.mapper.NoticeMapper;
 import com.yh.st.base.service.NoticeService;
-import com.yh.st.common.result.ResultData;
 
 /**
  * 我的工作台
@@ -48,8 +43,19 @@ public class WorkController extends BaseController {
 	@RequestMapping("noticeListData")
 	@ResponseBody
 	public Object noticeListData(HttpServletRequest request) {
-		return noticeService.queryNotice(getParams(request), getPageNum(request),
-				pageSize);
+		return noticeService.queryNotice(getParams(request), getPageNum(request), pageSize);
+	}
+
+	/**
+	 * 取未读消息数量
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping("messageNum")
+	@ResponseBody
+	public Object messageNum(long userId) {
+		return noticeService.countMessageNumByUserId(userId);
 	}
 
 }

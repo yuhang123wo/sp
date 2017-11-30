@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yh.st.base.domain.Notice;
@@ -66,6 +67,13 @@ public class NoticeServiceImpl implements NoticeService {
 			m.setUserId(list.get(i).getId());
 			noticeMessageMapper.insert(m);
 		}
+	}
+
+	@Override
+	public int countMessageNumByUserId(long userId) {
+		Example example = new Example(NoticeMessage.class);
+		example.createCriteria().andEqualTo("userId", userId).andEqualTo("state", State.STATE_ON);
+		return noticeMessageMapper.selectCountByExample(example);
 	}
 
 }

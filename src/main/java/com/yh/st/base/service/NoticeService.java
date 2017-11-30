@@ -31,4 +31,12 @@ public interface NoticeService {
 	 * @param message
 	 */
 	void addAllUserNotice(long createUserId, String message, String title);
+
+	/**
+	 * 取未读消息数量
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	int countMessageNumByUserId(long userId);
 }

@@ -30,13 +30,13 @@
 						<li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
+								<span class="badge badge-success" id="msg1">5</span>
 							</a>
 
 							<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 								<li class="dropdown-header">
 									<i class="ace-icon fa fa-envelope-o"></i>
-									13条未读信息
+									<span id="msg2">xxxxxx</span>
 								</li>
 
 								<li class="dropdown-content">
@@ -184,8 +184,6 @@
 			 
 <script  th:inline="javascript">  
     var websocket = null;  
-  
-  
     //判断当前浏览器是否支持WebSocket  
     if('WebSocket' in window){  
         websocket = new WebSocket("ws://localhost:8080/my-websocket");  
@@ -226,8 +224,8 @@
   
   
     //将消息显示在网页上  
-    function setMessageInnerHTML(innerHTML){  
-        document.getElementById('message').innerHTML += innerHTML + '';  
+    function setMessageInnerHTML(innerHTML){ 
+    	$("#msg1").text(parseInt($("#msg1").text())+1);  
     }  
   
   
@@ -235,8 +233,6 @@
     function closeWebSocket(){  
         websocket.close();  
     }  
-  
-  
     //发送消息  
     function send(){  
     	var userId = '<shiro:principal property="id"/>';
@@ -246,6 +242,20 @@
         params.message=message;
         websocket.send(JSON.stringify(params));  
     }  
+    $(function(){getMessageNum();})
+    
+    function getMessageNum(){
+    	var userId = '<shiro:principal property="id"/>';
+    	$.ajax({
+			type : "POST",
+			url : '/work/messageNum',
+			data : {userId:userId},
+			dataType : 'json',
+			success : function(data) {
+				$("#msg1").text(data);
+			}
+		});
+    }
 </script>
 </div>   
 </body>
