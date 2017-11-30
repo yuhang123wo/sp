@@ -23,4 +23,12 @@ public interface NoticeService {
 	 * @return
 	 */
 	PageInfo<Notice> queryNotice(Map<String, Object> params, int pageNo, int pageSize);
+
+	/**
+	 * 发送公告
+	 * 
+	 * @param createUserId
+	 * @param message
+	 */
+	void addAllUserNotice(long createUserId, String message, String title);
 }

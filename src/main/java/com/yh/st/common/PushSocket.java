@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 import com.yh.st.common.util.StringUtil;
 
-@ServerEndpoint(value = "/client")
-@Component
+//@ServerEndpoint(value = "/client")
+//@Component
 public class PushSocket {
 
 	private static Logger logger = LoggerFactory.getLogger(PushSocket.class);

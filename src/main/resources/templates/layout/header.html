@@ -182,13 +182,13 @@
 				<!-- /section:basics/navbar.dropdown -->
 			</div><!-- /.navbar-container -->
 			 
-<script type="text/javascript">  
+<script  th:inline="javascript">  
     var websocket = null;  
   
   
     //判断当前浏览器是否支持WebSocket  
     if('WebSocket' in window){  
-        websocket = new WebSocket("ws://localhost:8080/client");  
+        websocket = new WebSocket("ws://localhost:8080/my-websocket");  
     }  
     else{  
         alert('Not support websocket')  
@@ -239,8 +239,12 @@
   
     //发送消息  
     function send(){  
+    	var userId = '<shiro:principal property="id"/>';
         var message = document.getElementById('text').value;  
-        websocket.send(message,"123213");  
+        var params={};
+        params.userId=userId;
+        params.message=message;
+        websocket.send(JSON.stringify(params));  
     }  
 </script>
 </div>   

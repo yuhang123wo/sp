@@ -12,6 +12,9 @@
 			<if test="sex!=null">
 				and sex=#{sex}
 			</if>
+			<if test="state!=null">
+				and state=#{state}
+			</if>
 			<if test="endTime!=null">
 	        	<![CDATA[
 	        		and create_time<=#{endTime}
