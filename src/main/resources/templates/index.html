@@ -7,7 +7,11 @@
 	<!-- /section:basics/content.breadcrumbs -->
 	<div class="page-content" layout:fragment="content" seq="0">
 
-		 <p>Hello,<shiro:principal property="username"/>, how are you today?</p>
-</div>    
+		<div id="home" class="tab-pane fade in active">
+			<ul th:each="news:${newList}">
+				<li class="text-primary"><a th:href="${news.url}" target="_blank"><span  th:text="${news.title}"></span> </a></li>
+			</ul>
+		</div>
+	</div>    
 </body>
 </html>

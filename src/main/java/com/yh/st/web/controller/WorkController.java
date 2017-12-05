@@ -60,11 +60,22 @@ public class WorkController extends BaseController {
 
 	/**
 	 * 公告添加
+	 * 
 	 * @param userId
 	 * @return
 	 */
 	@RequestMapping("notice/add")
 	public String noticeAdd() {
 		return "work/notice-add";
+	}
+
+	/**
+	 * 新闻列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("newsView")
+	public String newsView() {
+		return "work/news-list";
 	}
 }

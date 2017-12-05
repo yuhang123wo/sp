@@ -1,13 +1,17 @@
 package com.yh.st.web.controller;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yh.st.base.service.NewsService;
 import com.yh.st.base.service.UserinfoService;
 
 /**
@@ -21,6 +25,8 @@ public class LoginController {
 
 	@Resource
 	private UserinfoService userinfoService;
+	@Resource
+	private NewsService newsService;
 
 	/**
 	 * 
@@ -35,7 +41,8 @@ public class LoginController {
 	 * index
 	 */
 	@RequestMapping("index")
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("newList", newsService.queryNews(new HashMap<String, Object>(), 1, 10).getList());
 		return "index";
 	}
 

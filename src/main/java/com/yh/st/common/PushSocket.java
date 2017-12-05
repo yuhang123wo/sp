@@ -16,9 +16,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.yh.st.common.util.StringUtil;
-
+//TODO 这种方式也可以实现websocket通信 但此项目不用
 //@ServerEndpoint(value = "/client")
 //@Component
+
 public class PushSocket {
 
 	private static Logger logger = LoggerFactory.getLogger(PushSocket.class);
@@ -88,11 +89,11 @@ public class PushSocket {
 	 * @throws IOException
 	 */
 	public void sendMsgToAll(String message) throws IOException {
-		if(StringUtil.isNull(message)){
+		if (StringUtil.isNull(message)) {
 			return;
 		}
 		for (PushSocket item : wsClientMap) {
-			
+
 			item.session.getBasicRemote().sendText(message);
 		}
 		logger.info("成功群送一条消息:" + wsClientMap.size());
