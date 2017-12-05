@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
 <head>
-<script th:src="@{/js/page.js}"></script>
 </head>
 <body>
 	<!-- /section:basics/content.breadcrumbs -->
@@ -40,9 +39,9 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<button class="btn" type="reset">
+											<button class="btn" type="reset" onclick="fhList()">
 												<i class="ace-icon fa fa-undo bigger-110"></i>
-												重置
+												返回
 											</button>
 										</div>
 									</div>
@@ -51,6 +50,12 @@
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content-area -->
+					<script type="text/javascript">
+
+ function fhList(){
+	 window.location.href="/work/noticeListView";
+ }</script>
 </div>
+
 </body>
 </html>

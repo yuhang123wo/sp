@@ -30,7 +30,7 @@
 						<li class="green">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success" id="msg1">5</span>
+								<span class="badge badge-success" id="msg1"></span>
 							</a>
 
 							<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
@@ -225,7 +225,7 @@
   
     //将消息显示在网页上  
     function setMessageInnerHTML(innerHTML){ 
-    	$("#msg1").text(parseInt($("#msg1").text())+1);  
+    	getMessageNum();  
     }  
   
   
@@ -240,7 +240,6 @@
         params.userId=userId;
         params.message=$("#notice-msg").val();
         params.title=$("#notice-title").val();
-        alert(JSON.stringify(params));
         websocket.send(JSON.stringify(params));  
     }  
     $(function(){getMessageNum();})
