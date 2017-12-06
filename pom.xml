@@ -194,4 +194,30 @@
 			</plugin>
 		</plugins>
 	</build>
+	 <profiles>
+        <profile>
+            <!-- 生产环境 -->
+            <id>work</id>
+            <properties>
+                <profiles.active>work</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 本地开发环境 -->
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <!-- 测试环境 -->
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>
