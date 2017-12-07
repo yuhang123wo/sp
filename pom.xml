@@ -166,6 +166,11 @@
 			<version>8.0.36</version>
 			<scope>provided</scope>
 		</dependency>
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.17</version>
+</dependency>
 	</dependencies>
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
 	<repositories>
