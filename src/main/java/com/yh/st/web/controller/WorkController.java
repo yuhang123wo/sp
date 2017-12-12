@@ -1,22 +1,31 @@
 package com.yh.st.web.controller;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.News;
+import com.yh.st.base.domain.TFile;
 import com.yh.st.base.service.NewsService;
 import com.yh.st.base.service.NoticeService;
+import com.yh.st.base.service.TFileService;
 import com.yh.st.common.util.poi.CommonExcel;
 
 /**
@@ -34,6 +43,8 @@ public class WorkController extends BaseController {
 	private NoticeService noticeService;
 	@Resource
 	private NewsService newsService;
+	@Resource
+	private TFileService tFileService;
 
 	/**
 	 * 公告列表
@@ -125,5 +136,77 @@ public class WorkController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * 新闻列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("wordView")
+	public String wordView(Model model) {
+		model.addAttribute("listFile", tFileService.listTFile());
+		return "work/word-list";
+	}
+
+	/**
+	 * 上传
+	 * 
+	 * @return
+	 */
+	@RequestMapping("wordUpload")
+	public String wordUpload() {
+		return "work/word-add";
+	}
+
+	/**
+	 * 文件上传
+	 * 
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/testuploadimg", method = RequestMethod.POST)
+	public @ResponseBody CallBack uploadImg(@RequestParam("file") MultipartFile file,
+			HttpServletRequest request) {
+		String fileName = file.getOriginalFilename();
+		String filePath = request.getSession().getServletContext().getRealPath("/");
+		try {
+			file.transferTo(new File(filePath + "/" + UUID.randomUUID() + fileName));
+			TFile tfile = new TFile();
+			tfile.setName(fileName);
+			tfile.setFileName(UUID.randomUUID() + fileName);
+			tfile.setCreateTime(new Date());
+			tFileService.insertTFile(tfile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 返回json
+		return new CallBack("success");
+	}
+
+	class CallBack {
+		private String token;
+
+		public CallBack(String token) {
+			super();
+			this.token = token;
+		}
+
+		/**
+		 * @return the token
+		 */
+		public String getToken() {
+			return token;
+		}
+
+		/**
+		 * @param token
+		 *            the token to set
+		 */
+		public void setToken(String token) {
+			this.token = token;
+		}
+
 	}
 }

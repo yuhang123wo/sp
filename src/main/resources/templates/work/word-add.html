@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head>
+<link rel="stylesheet" th:href="@{/css/fileinput.css}" />
+</head>
+<body>
+	<!-- /section:basics/content.breadcrumbs -->
+	<div class="page-content" layout:fragment="content" seq="23">
+		<!-- /section:settings.box -->
+		<div class="page-content-area">
+			<div class="page-header">
+			</div>
+			 <div class="form-group">
+            <div class="file-loading">
+                <input id="file-1" name="file" type="file" multiple="multiple" class="file" data-overwrite-initial="false" data-min-file-count="1" />
+            </div>
+        </div>
+		</div>
+		<!-- /.page-content-area -->
+		
+		<!-- page specific plugin scripts -->
+		<script th:src="@{/js/fileinput.js}"></script>
+         <script>
+            $(document).on('ready', function () {
+                $("#file-0b").fileinput();
+            });
+        </script>
+        <script type="text/javascript">
+        $("#file-1").fileinput({
+            theme: 'fa',
+            uploadUrl: '/work/testuploadimg', // you must set a valid URL here else you will get an error
+            allowedFileExtensions: ['doc','docx'],
+            overwriteInitial: false,
+            maxFileSize: 2000,
+            maxFilesNum: 1,
+           // allowedFileTypes: ['doc', 'docx'],
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            },
+            fileuploaded:function (event, data, previewId, index) {alert(1)}
+        }); 
+        </script>
+	</div>
+	<!-- /.page-content -->
+</body>
+</html>
