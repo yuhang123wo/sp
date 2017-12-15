@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.News;
 import com.yh.st.base.domain.TFile;
 import com.yh.st.base.service.NewsService;
 import com.yh.st.base.service.NoticeService;
 import com.yh.st.base.service.TFileService;
+import com.yh.st.common.util.ElasticsearchUtils;
 import com.yh.st.common.util.poi.CommonExcel;
 
 /**
@@ -208,5 +210,12 @@ public class WorkController extends BaseController {
 			this.token = token;
 		}
 
+	}
+
+	@RequestMapping("addEs")
+	@ResponseBody
+	public String addEs() {
+		ElasticsearchUtils.searchListData("ymq_index", "about_test", null,  "name=鹏磊");
+		return "hanhang";
 	}
 }
