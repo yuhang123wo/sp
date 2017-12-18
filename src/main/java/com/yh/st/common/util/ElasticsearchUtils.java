@@ -436,7 +436,6 @@ public class ElasticsearchUtils {
 		// 查询字段
 		if (StringUtils.isNotEmpty(matchStr)) {
 			for (String s : matchStr.split(",")) {
-				String[] ss = s.split("=");
 				if (matchPhrase == Boolean.TRUE) {
 					boolQuery
 							.must(QueryBuilders.matchPhraseQuery(s.split("=")[0], s.split("=")[1]));
