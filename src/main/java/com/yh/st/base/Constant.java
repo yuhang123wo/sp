@@ -12,4 +12,11 @@ public class Constant {
 	 * 密码前缀
 	 */
 	public static final String PWD_PRFIX = "yhst|";
+	/**
+	 * es word
+	 */
+	public static final String ES_WORD_INDEX = "word_index";
+
+	public static final String ES_WORD_TYPE = "es_word_type";
+
 }

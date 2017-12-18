@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.yh.st.base.Constant;
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.News;
 import com.yh.st.base.domain.TFile;
@@ -28,7 +30,10 @@ import com.yh.st.base.service.NewsService;
 import com.yh.st.base.service.NoticeService;
 import com.yh.st.base.service.TFileService;
 import com.yh.st.common.util.ElasticsearchUtils;
+import com.yh.st.common.util.FileUtil;
 import com.yh.st.common.util.poi.CommonExcel;
+import com.yh.st.common.util.poi.WordUtil;
+import com.yh.st.vo.EsData;
 
 /**
  * 我的工作台
@@ -174,12 +179,23 @@ public class WorkController extends BaseController {
 		String fileName = file.getOriginalFilename();
 		String filePath = request.getSession().getServletContext().getRealPath("/");
 		try {
-			file.transferTo(new File(filePath + "/" + UUID.randomUUID() + fileName));
+			File d = new File(filePath + "/" + UUID.randomUUID() + fileName);
+			file.transferTo(d);
 			TFile tfile = new TFile();
 			tfile.setName(fileName);
 			tfile.setFileName(UUID.randomUUID() + fileName);
 			tfile.setCreateTime(new Date());
 			tFileService.insertTFile(tfile);
+			// 加入es
+			EsData data = new EsData();
+			data.setContent(WordUtil.getTextFromWord07(filePath + "/" + UUID.randomUUID()
+					+ fileName));
+			data.setCreateTime(new Date());
+			data.setUpdateTime(new Date());
+			data.setTitle(UUID.randomUUID() + fileName);
+			data.setDataId(tfile.getId().toString());
+			ElasticsearchUtils.addData(JSONObject.parseObject(JSON.toJSONString(data)),
+					Constant.ES_WORD_INDEX, Constant.ES_WORD_TYPE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -215,7 +231,8 @@ public class WorkController extends BaseController {
 	@RequestMapping("addEs")
 	@ResponseBody
 	public String addEs() {
-		ElasticsearchUtils.searchListData("ymq_index", "about_test", null,  "name=鹏磊");
+		ElasticsearchUtils.searchListData(Constant.ES_WORD_INDEX, Constant.ES_WORD_TYPE, null,
+				"dataId=6");
 		return "hanhang";
 	}
 }
