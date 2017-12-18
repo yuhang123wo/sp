@@ -30,7 +30,6 @@ import com.yh.st.base.service.NewsService;
 import com.yh.st.base.service.NoticeService;
 import com.yh.st.base.service.TFileService;
 import com.yh.st.common.util.ElasticsearchUtils;
-import com.yh.st.common.util.FileUtil;
 import com.yh.st.common.util.poi.CommonExcel;
 import com.yh.st.common.util.poi.WordUtil;
 import com.yh.st.vo.EsData;
@@ -177,9 +176,9 @@ public class WorkController extends BaseController {
 	public @ResponseBody CallBack uploadImg(@RequestParam("file") MultipartFile file,
 			HttpServletRequest request) {
 		String fileName = file.getOriginalFilename();
-		String filePath = request.getSession().getServletContext().getRealPath("/");
+		String filePath = request.getSession().getServletContext().getRealPath("/")+ "/" + UUID.randomUUID() + fileName;
 		try {
-			File d = new File(filePath + "/" + UUID.randomUUID() + fileName);
+			File d = new File(filePath);
 			file.transferTo(d);
 			TFile tfile = new TFile();
 			tfile.setName(fileName);
@@ -188,8 +187,7 @@ public class WorkController extends BaseController {
 			tFileService.insertTFile(tfile);
 			// 加入es
 			EsData data = new EsData();
-			data.setContent(WordUtil.getTextFromWord07(filePath + "/" + UUID.randomUUID()
-					+ fileName));
+			data.setContent(WordUtil.getTextFromWord07(filePath));
 			data.setCreateTime(new Date());
 			data.setUpdateTime(new Date());
 			data.setTitle(UUID.randomUUID() + fileName);
@@ -230,9 +228,9 @@ public class WorkController extends BaseController {
 
 	@RequestMapping("addEs")
 	@ResponseBody
-	public String addEs() {
+	public String addEs(long id) {
 		ElasticsearchUtils.searchListData(Constant.ES_WORD_INDEX, Constant.ES_WORD_TYPE, null,
-				"dataId=6");
+				"dataId=" + id);
 		return "hanhang";
 	}
 }

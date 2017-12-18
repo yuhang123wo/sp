@@ -65,6 +65,7 @@ public class WordUtil {
 			OPCPackage opcPackage = POIXMLDocument.openPackage(filePath);
 			POIXMLTextExtractor extractor = new XWPFWordExtractor(opcPackage);
 			String text2007 = extractor.getText();
+			opcPackage.close();
 			return text2007;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,5 +112,10 @@ public class WordUtil {
 			}
 		}
 		return result;
+	}
+	
+	public static void main(String[] args) throws Exception {
+		String dsF=WordUtil.getTextFromWord07("D:/chengdu/gogooWork/tomcat/apache-tomcat-7.0.67/wtpwebapps/sp/8dafffdf-422b-4c57-ba78-6573a6266e9834432.docx");
+		System.out.println(dsF);
 	}
 }
