@@ -5,7 +5,7 @@
 </head>
 <body>
 	<!-- /section:basics/content.breadcrumbs -->
-	<div class="page-content" layout:fragment="content" seq="31">
+	<div class="page-content" layout:fragment="content" seq="32">
 		<!-- /section:settings.box -->
 		<div class="page-content-area">
 			<div class="row">
@@ -46,7 +46,6 @@
 											<th>名称</th>
 											<th>备注</th>
 											<th>创建时间</th>
-											<th>操作</th>
 										</tr>
 									</thead>
 									<tbody id="myData">
@@ -76,7 +75,6 @@
         <td>{{name}}</td>
         <td>{{remark}}</td>
         <td>{{createTime}}</td>
-        <td><a onclick="enablingFlow({{id}})" href="#">启用</a></td>
 		</tr>
 	{{/each}}
 	</script>
@@ -98,21 +96,6 @@
 						$('#myData').append($tr);
 						pagePlugin('myPage', data.data.pages,
 								data.data.pageNum, data.data.total, jumpPage);
-					}
-				});
-			}
-			function enablingFlow(id){
-				$.ajax({
-					type : "POST",
-					url : '/flow/enablingFlow',
-					data : {flowId:id},
-					dataType : 'json',
-					success : function(data) {
-						if(data.rspCode=='0'){
-							alert("启用失败")
-						}else{
-							alert(data.rspMsg);
-						}
 					}
 				});
 			}

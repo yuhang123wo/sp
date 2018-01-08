@@ -45,4 +45,10 @@ public interface FlowService extends BaseService<WorkFlow> {
 	 */
 	void updateTask(String taskId);
 
+	/**
+	 * 
+	 * @return WorkFlow
+	 */
+	WorkFlow getWorkFlow(long flowId);
+
 }

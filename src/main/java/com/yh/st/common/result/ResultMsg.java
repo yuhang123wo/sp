@@ -6,6 +6,8 @@ public class ResultMsg {
 	/** 返回信息内容 */
 	protected String rspMsg = "操作成功";
 
+	public static String FAILCODE = "-1";
+
 	public ResultMsg() {
 	}
 
@@ -42,7 +44,6 @@ public class ResultMsg {
 
 	@Override
 	public String toString() {
-		return "Response{" + "rspCode='" + rspCode + '\'' + ", rspMsg='"
-				+ rspMsg + '\'' + '}';
+		return "Response{" + "rspCode='" + rspCode + '\'' + ", rspMsg='" + rspMsg + '\'' + '}';
 	}
 }

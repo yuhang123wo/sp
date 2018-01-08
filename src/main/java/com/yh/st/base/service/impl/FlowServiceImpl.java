@@ -84,13 +84,17 @@ public class FlowServiceImpl extends BaseServiceImpl<WorkFlow> implements FlowSe
 		return workFlowMapper;
 	}
 
-	
 	@Override
 	public PageInfo<WorkFlow> queryPageByParmas(Map<String, Object> map, int pageNo, int pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		Example example = new Example(WorkFlow.class);
-		example.createCriteria().andEqualTo("state",WorkFlow.STATE_ON);
+		example.createCriteria().andEqualTo("state", WorkFlow.STATE_ON);
 		List<WorkFlow> list = this.getDao().selectByExample(example);
 		return new PageInfo<WorkFlow>(list);
+	}
+
+	@Override
+	public WorkFlow getWorkFlow(long flowId) {
+		return this.getDao().selectByPrimaryKey(flowId);
 	}
 }
