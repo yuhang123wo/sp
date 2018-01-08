@@ -82,7 +82,7 @@ public abstract class BaseController<T extends Entity> {
 	 * @throws Exception
 	 *             String
 	 */
-	@RequestMapping(value = "listData", method = RequestMethod.GET)
+	@RequestMapping(value = "listData", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultData listData(HttpServletRequest request) {
 		return new ResultData(baseService.queryPageByParmas(getParams(request),
