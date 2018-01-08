@@ -61,4 +61,10 @@ public class UserController extends BaseController {
 		return new ResultData(page);
 	}
 
+	@Override
+	protected String getPrefix() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -19,4 +19,6 @@ public class Constant {
 
 	public static final String ES_WORD_TYPE = "es_word_type";
 
+	public static final String DEPLOY_PATH = "";
+
 }

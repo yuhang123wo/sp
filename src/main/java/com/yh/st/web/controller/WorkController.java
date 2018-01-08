@@ -233,4 +233,10 @@ public class WorkController extends BaseController {
 				"dataId=" + id);
 		return "hanhang";
 	}
+
+	@Override
+	protected String getPrefix() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

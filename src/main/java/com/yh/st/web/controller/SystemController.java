@@ -78,4 +78,9 @@ public class SystemController extends BaseController {
 		return new ResultMsg();
 	}
 
+	@Override
+	protected String getPrefix() {
+		return null;
+	}
+
 }
