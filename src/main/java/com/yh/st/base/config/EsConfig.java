@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by hungnguyen on 12/16/14.
  */
-@Configuration
+//@Configuration
 public class EsConfig {
 
 	@Value("${elasticsearch.host}")

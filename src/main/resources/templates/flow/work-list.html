@@ -72,8 +72,8 @@
 	{{#each this}}
 		<tr id="{{id}}">
 		<td class="center">{{id}}</td>
-        <td>{{name}}</td>
-        <td>{{remark}}</td>
+        <td></td>
+        <td></td>
         <td>{{createTime}}</td>
 		</tr>
 	{{/each}}
@@ -85,7 +85,7 @@
 				$('#myPage').html('');
 				$.ajax({
 					type : "POST",
-					url : '/flow/listData',
+					url : '/flow/work/listData',
 					data : params,
 					dataType : 'json',
 					success : function(data) {

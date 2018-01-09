@@ -71,6 +71,12 @@ public class ShiroConfiguration {
 				filterChainDefinitionMap.put(auth.getAuthUrl(), "perms[" + auth.getAuthUrl() + "]");
 			}
 		}
+		filterChainDefinitionMap.put("/css/**", "anon");
+		filterChainDefinitionMap.put("/js/**", "anon");
+		filterChainDefinitionMap.put("/font/**", "anon");
+		filterChainDefinitionMap.put("/fonts/**", "anon");
+		filterChainDefinitionMap.put("/avatars/**", "anon");
+		filterChainDefinitionMap.put("/images/**", "anon");
 		filterChainDefinitionMap.put("/**", "authc");// 表示需要认证才可以访问
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		// 未授权界面;

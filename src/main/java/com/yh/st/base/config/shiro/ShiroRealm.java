@@ -29,6 +29,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		Userinfo u = (Userinfo) principals.getPrimaryPrincipal();
 		List<Auth> auth = userinfoService.findAllAuthByUserId(u.getId());
 		for (int i = 0; i < auth.size(); i++) {
+			System.out.println(auth.get(i).getAuthUrl());
 			info.addStringPermission(auth.get(i).getAuthUrl());
 		}
 		return info;

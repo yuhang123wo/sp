@@ -34,7 +34,7 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
 
-@Component
+//@Component
 public class ElasticsearchUtils {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchUtils.class);
 
