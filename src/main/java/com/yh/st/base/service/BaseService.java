@@ -2,6 +2,7 @@ package com.yh.st.base.service;
 
 import java.util.Map;
 
+import com.github.abel533.mapper.Mapper;
 import com.github.pagehelper.PageInfo;
 import com.yh.st.base.domain.Entity;
 
@@ -14,6 +15,7 @@ public interface BaseService<T extends Entity> {
 	 * @throws Exception
 	 */
 	void save(T model);
+
 	/**
 	 * 分页查询
 	 * 
@@ -23,4 +25,5 @@ public interface BaseService<T extends Entity> {
 	 * @return
 	 */
 	PageInfo<T> queryPageByParmas(Map<String, Object> map, int pageNo, int pageSize);
+
 }

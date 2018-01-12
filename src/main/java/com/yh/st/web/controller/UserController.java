@@ -12,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import com.yh.st.base.config.shiro.ShiroService;
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.Userinfo;
+import com.yh.st.base.service.BaseService;
 import com.yh.st.base.service.UserinfoService;
 import com.yh.st.common.result.ResultData;
 
@@ -63,6 +64,12 @@ public class UserController extends BaseController {
 
 	@Override
 	protected String getPrefix() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected BaseService getService() {
 		// TODO Auto-generated method stub
 		return null;
 	}

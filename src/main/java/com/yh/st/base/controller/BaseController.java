@@ -24,8 +24,8 @@ public abstract class BaseController<T extends Entity> {
 	 * 默认页数
 	 */
 	protected int pageSize = 20;
-	@Resource
-	protected BaseService<T> baseService;
+
+	protected abstract BaseService<T> getService();
 
 	protected abstract String getPrefix();
 
@@ -85,7 +85,7 @@ public abstract class BaseController<T extends Entity> {
 	@RequestMapping(value = "listData", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultData listData(HttpServletRequest request) {
-		return new ResultData(baseService.queryPageByParmas(getParams(request),
+		return new ResultData(this.getService().queryPageByParmas(getParams(request),
 				getPageNum(request), pageSize));
 	}
 

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.Auth;
+import com.yh.st.base.domain.Userinfo;
+import com.yh.st.base.service.BaseService;
 import com.yh.st.base.service.UserinfoService;
 import com.yh.st.common.result.ResultMsg;
 import com.yh.st.common.util.ZnodesUtil;
@@ -26,7 +28,7 @@ import com.yh.st.common.util.ZnodesUtil;
  */
 @Controller
 @RequestMapping("sys")
-public class SystemController extends BaseController {
+public class SystemController extends BaseController<Userinfo> {
 
 	@Resource
 	private UserinfoService userinfoService;
@@ -80,6 +82,11 @@ public class SystemController extends BaseController {
 
 	@Override
 	protected String getPrefix() {
+		return null;
+	}
+
+	@Override
+	protected BaseService<Userinfo> getService() {
 		return null;
 	}
 

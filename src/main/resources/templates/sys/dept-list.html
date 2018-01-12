@@ -5,7 +5,7 @@
 </head>
 <body>
 	<!-- /section:basics/content.breadcrumbs -->
-	<div class="page-content" layout:fragment="content" seq="11">
+	<div class="page-content" layout:fragment="content" seq="13">
 		<!-- /section:settings.box -->
 		<div class="page-content-area visible widget-box" id="pageList">
 			<div class="row">
@@ -13,7 +13,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<form id="searchForm" action="#">
-								<div class="table-header">用户列表</div>
+								<div class="table-header">部门列表</div>
 								<div class="row">
 									<div class="form-group col-sm-2">
 										<input type="text" name="username" class="form-control"  placeholder="输入用户名"/>
@@ -31,13 +31,8 @@
 											<th class="center">序号<!-- <label class="position-relative">
 													<input type="checkbox" class="ace" /> <span class="lbl"></span>
 											</label> --></th>
-											<th>用户名</th>
-											<th>真实名</th>
-											<th>性别</th>
-											<th>出生日期</th>
-											<th>类型</th>
-											<th>状态</th>
-											<th>创建日期</th>
+											<th>部门名称</th>
+											<th>上级ID</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -161,13 +156,8 @@
 	{{#each this}}
 		<tr id="{{id}}">
 		<td class="center">{{id}}</td>
-        <td>{{username}}</td>
-        <td>{{realname}}</td>
-        <td>{{sexCN}}</td>
-        <td>{{born}}</td>
-        <td>{{type}}</td>
-        <td>{{stateCN}}</td>
-        <td>{{createTime}}</td>
+        <td>{{name}}</td>
+        <td>{{parentId}}</td>
         <td>查看</td>
 		</tr>
 	{{/each}}
@@ -179,7 +169,7 @@
 				$('#myPage').html('');
 				$.ajax({
 					type : "POST",
-					url : '/user/userListData',
+					url : '/dept/listData',
 					data : params,
 					dataType : 'json',
 					success : function(data) {

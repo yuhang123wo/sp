@@ -26,6 +26,7 @@ import com.yh.st.base.Constant;
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.News;
 import com.yh.st.base.domain.TFile;
+import com.yh.st.base.service.BaseService;
 import com.yh.st.base.service.NewsService;
 import com.yh.st.base.service.NoticeService;
 import com.yh.st.base.service.TFileService;
@@ -236,6 +237,12 @@ public class WorkController extends BaseController {
 
 	@Override
 	protected String getPrefix() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected BaseService getService() {
 		// TODO Auto-generated method stub
 		return null;
 	}

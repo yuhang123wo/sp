@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yh.st.base.controller.BaseController;
 import com.yh.st.base.domain.WorkFlow;
+import com.yh.st.base.service.BaseService;
 import com.yh.st.base.service.FlowService;
 import com.yh.st.base.service.UserinfoService;
 import com.yh.st.common.result.ResultData;
@@ -57,5 +58,10 @@ public class FlowController extends BaseController<WorkFlow> {
 	@ResponseBody
 	public ResultData workListData(HttpServletRequest request) {
 		return new ResultData(flowService.getTask(UserUtil.getUser().getId()));
+	}
+
+	@Override
+	protected BaseService<WorkFlow> getService() {
+		return flowService;
 	}
 }
