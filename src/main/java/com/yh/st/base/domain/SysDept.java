@@ -18,7 +18,6 @@ public class SysDept extends Entity {
 	 * 
 	 */
 	private static final long serialVersionUID = 2950057255564678947L;
-	private Long id;
 	// 上级部门ID，一级部门为0
 	private Long parentId;
 	// 部门名称
@@ -37,14 +36,6 @@ public class SysDept extends Entity {
 
 	@Transient
 	private List<?> list;
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getId() {
-		return id;
-	}
 
 	/**
 	 * 设置：上级部门ID，一级部门为0

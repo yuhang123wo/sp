@@ -61,7 +61,7 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<form class="form-horizontal" role="form" id="form1">
+								<form class="form-horizontal" role="form" id="form1" method="post" action="/dept/save">
 									<!-- #section:elements.form -->
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 部门名称：</label>
@@ -75,7 +75,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">上级名称：</label>
 										<div class="col-sm-2">
 											<div class="pos-rel" onclick="queryDept()">
-												<select class="form-control" id="dept" name="dept">
+												<select class="form-control" id="parentId" name="parentId">
 												 </select>
 											</div>
 										</div>
@@ -84,7 +84,7 @@
 
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
-											<button class="btn btn-info" type="button">
+											<button class="btn btn-info" type="submit">
 												<i class="ace-icon fa fa-check bigger-110"></i>
 												立即提交
 											</button>
@@ -148,7 +148,7 @@
 							console.log(data.data.list);
 							for(var i=0;i<data.data.list.length;i++){
 								var m=data.data.list[i];
-							   $("#dept").append("<option value="+m.id+">"+m.name+"</option>") ;
+							   $("#parentId").append("<option value="+m.id+">"+m.name+"</option>") ;
 							}
 						}
 					}

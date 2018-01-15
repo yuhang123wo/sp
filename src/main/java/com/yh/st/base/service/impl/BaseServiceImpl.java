@@ -28,7 +28,7 @@ public abstract class BaseServiceImpl<T extends Entity> implements BaseService<T
 
 	@Override
 	public void save(T t) {
-		Assert.isTrue(StringUtil.objIsNull(t), "model为空");
+		Assert.isTrue(StringUtil.objIsNotNull(t), "model为空");
 		this.getDao().insert(t);
 	}
 

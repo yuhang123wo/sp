@@ -26,4 +26,9 @@ public class SysDeptController extends BaseController<SysDept> {
 		return sysDeptService;
 	}
 
+	@RequestMapping("save")
+	public String saveDept(SysDept sysDept) {
+		sysDeptService.save(sysDept);
+		return "sys/dept-list";
+	}
 }
