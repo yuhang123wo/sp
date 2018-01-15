@@ -64,68 +64,19 @@
 								<form class="form-horizontal" role="form" id="form1">
 									<!-- #section:elements.form -->
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名：</label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 部门名称：</label>
 
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="用户名" class="col-xs-10 col-sm-5" />
+											<input type="text" id="name" name="name"  placeholder="部门名称" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> 真实姓名： </label>
-
-										<div class="col-sm-9">
-											<input type="text" id="form-field-1-1" placeholder="真实姓名" class=" col-xs-10 col-sm-5" />
-										</div>
-									</div>
-
-									<!-- /section:elements.form -->
-									<div class="space-4"></div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-2">密码： </label>
-
-										<div class="col-sm-9">
-											<input type="password" id="form-field-2" placeholder="密码" class="col-xs-10 col-sm-5" />
-										</div>
-									</div>
-
-									<div class="space-4"></div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">部门： </label>
-
-										<div class="col-sm-9">
-											<input readonly="" type="text" class="col-xs-10 col-sm-5" id="form-input-readonly" value="这里是只读表单，不允许你修改，哇咔咔！" />
-										</div>
-									</div>
-
-
-									<div class="space-4"></div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">邮箱：</label>
-
-										<div class="col-sm-9">
-											<div class="inline">
-												<input type="text" name="tags" id="form-field-tags" value="我是标签一" placeholder="这里输入标签，然后按确认 ..." />
-											</div>
-
-											<!-- /section:plugins/input.tag-input -->
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">角色：</label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">上级名称：</label>
 										<div class="col-sm-2">
-											<div class="pos-rel">
-												<select class="form-control" id="form-field-select-1">
-																<option value="">请选择状态</option>
-																<option value="AL">未提交</option>
-																<option value="AK">已提交</option>
-																<option value="AZ">待审核</option>
-																<option value="AR">审核通过</option>
-															</select>
+											<div class="pos-rel" onclick="queryDept()">
+												<select class="form-control" id="dept" name="dept">
+												 </select>
 											</div>
 										</div>
 									</div>
@@ -183,6 +134,26 @@
 					}
 				});
 			}
+			
+			//<![CDATA[	
+			function queryDept() {
+				$.ajax({
+					type : "POST",
+					url : '/dept/listData',
+					data : {},
+					dataType : 'json',
+					success : function(data) {
+						$("#dept").empty();
+						if(data.rspCode=='0'){
+							console.log(data.data.list);
+							for(var i=0;i<data.data.list.length;i++){
+								var m=data.data.list[i];
+							   $("#dept").append("<option value="+m.id+">"+m.name+"</option>") ;
+							}
+						}
+					}
+				});
+			}//]]>
 		</script>
 		<script type="text/javascript">
 			jQuery(function($) {
