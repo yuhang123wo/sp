@@ -3,6 +3,7 @@ package com.yh.st.web.controller;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -245,5 +246,11 @@ public class WorkController extends BaseController {
 	protected BaseService getService() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	
+	public static void main(String[] args) {
+       BigDecimal b = new BigDecimal(2);
+		System.out.println(b.compareTo(new BigDecimal(0)) >=0);
 	}
 }

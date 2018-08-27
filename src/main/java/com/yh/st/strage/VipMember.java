@@ -11,4 +11,5 @@ public class VipMember implements Strategy {
 		// VIP会员打8折
 		return new BigDecimal("80");
 	}
+
 }
